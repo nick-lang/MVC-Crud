@@ -11,13 +11,13 @@
 	<c:choose>
 		<c:when test="${! empty book}">
 			<ul>
-				<li>${book.name}</li>
-				<li>${book.page}</li>
-				<li>${book.quote}</li>
+				<li>ISBN: ${book.isbn}</li>
+				<li>Title: ${book.title}</li>
+				<li>Author: ${book.author}</li>
 			</ul>
 		</c:when>
 		<c:otherwise>
-			<p>No bookmark found</p>
+			<p>No book found</p>
 		</c:otherwise>
 	</c:choose>
 </body>

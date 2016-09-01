@@ -3,6 +3,7 @@ package data;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,9 +12,9 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 
-public class BookmarkFileDAO implements BookmarkDAO {
-	private static final String FILE_NAME="/WEB-INF/bookmarks.csv";
-	private Map<String, Bookmark> bookmarks = new HashMap<>();
+public class BookFileDAO implements BookDAO {
+	private static final String FILE_NAME="/WEB-INF/books.csv";
+	private Map<String, Book> books = new HashMap<>();
 	/*
 	 * Use Autowired to have Spring inject an instance
 	 * of a WebApplicationContext into this object after
@@ -40,10 +41,9 @@ public class BookmarkFileDAO implements BookmarkDAO {
 			while ((line = buf.readLine()) != null) {
 				String[] tokens = line.split(",");
 				String isbn = tokens[0];
-				String name = tokens[1];
-				int page = Integer.parseInt(tokens[2]);
-				String quote = tokens[3];
-				bookmarks.put(isbn, new Bookmark(isbn, name, page, quote));
+				String title = tokens[1];
+				String author = tokens[2];
+				books.put(isbn, new Book(isbn, title, author));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
@@ -51,27 +51,22 @@ public class BookmarkFileDAO implements BookmarkDAO {
 	}
 
 	@Override
-	public Bookmark getBookByIsbn(String isbn) {
-		return bookmarks.get(isbn);
+	public Book getBookByIsbn(String isbn) {
+		return books.get(isbn);
 	}
 	
 	@Override
-	public void addBook(Bookmark bookmark) {
+	public void addBook(Book bookmark) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Bookmark getNextBook(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Book> getBooks() {
+		return books.values();
+		
 	}
 
-	@Override
-	public Bookmark getBackBook(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
 

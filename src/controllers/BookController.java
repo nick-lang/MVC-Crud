@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import data.Bookmark;
-import data.BookmarkDAO;
+import data.BookDAO;
 
 @Controller
 @SessionAttributes("currentBook")
-public class BookmarkController {
+public class BookController {
 	@Autowired
-	private BookmarkDAO bookmarkDao;
+	private BookDAO bookDao;
 
 	@ModelAttribute("currentBook")
-	public String initState() {
+	public String initBook() {
 		return "";
 	}
 	
@@ -29,20 +28,18 @@ public class BookmarkController {
 	public ModelAndView getByName(@RequestParam("isbn") String n) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("result.jsp");
-		mv.addObject("book", bookmarkDao.getBookByIsbn(n));
-		mv.addObject("currentBook", bookmarkDao.getBookByIsbn(n).getName());
+		mv.addObject("book", bookDao.getBookByIsbn(n));
+		mv.addObject("currentBook", bookDao.getBookByIsbn(n).getTitle());
 		return mv;
 	}
-//	@RequestMapping(path="GetBookData.do", 
-//			params="next",
-//			method=RequestMethod.GET)
-//	public ModelAndView getNextByState(@ModelAttribute("currentState") String state) {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("result.jsp");
-//		mv.addObject("state", stateDao.getNextState(state));
-//		mv.addObject("currentState", stateDao.getNextState(state).getName());
-//		return mv;
-//	}
+	@RequestMapping(path="GetBookData.do", 
+			method=RequestMethod.GET)
+	public ModelAndView getAllBooks() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("allBooks.jsp");
+		mv.addObject("books", bookDao.getBooks());
+		return mv;
+	}
 //	@RequestMapping(path="GetBookData.do", 
 //			params="back",
 //			method=RequestMethod.GET)
@@ -67,7 +64,7 @@ public class BookmarkController {
 //
 //	@RequestMapping(path="NewBookmark.do",
 //			method=RequestMethod.POST)
-//	public ModelAndView newState(Bookmark state) {
+//	public ModelAndView newBook(Bookmark state) {
 //		stateDao.addState(state);
 //		ModelAndView mv = new ModelAndView();
 //		mv.setViewName("result.jsp");
