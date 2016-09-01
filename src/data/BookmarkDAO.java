@@ -1,9 +1,8 @@
 package data;
 
 public interface BookmarkDAO {
-	public Bookmark getStateByName(String name);
-	public Bookmark getStateByAbbreviation(String abbreviation);
-	public Bookmark getNextState(String name);
-	public void addState(Bookmark state);
-	public Bookmark getBackState(String name);
+	public Bookmark getBookByIsbn(String isbn);
+	public Bookmark getNextBook(String name);
+	public void addBook(Bookmark bookmark);
+	public Bookmark getBackBook(String name);
 }

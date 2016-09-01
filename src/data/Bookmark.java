@@ -1,75 +1,57 @@
 package data;
 
 public class Bookmark {
-	private String abbrev;
+	private String isbn;
 	private String name;
-	private String capital;
-	private String latitude;
-	private String longitude;
-	private String population;
-	private String bird;
+	private int page;
+	private String quote;
 
 	public Bookmark() {
 	}
-	
-	public Bookmark(String abbreviation, String name, String capital, String latitude, String longitude, String population, String bird) {
-		this.abbrev = abbreviation;
+
+	public Bookmark(String isbn, String name, int page, String quote) {
+		super();
+		this.isbn = isbn;
 		this.name = name;
-		this.capital = capital;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.population = population;
-		this.bird = bird;
+		this.page = page;
+		this.quote = quote;
 	}
 
-	public String getAbbreviation() {
-		return abbrev;
+	public String getIsbn() {
+		return isbn;
 	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
 	public String getName() {
 		return name;
 	}
-	public String getCapital() {
-		return capital;
-	}
-	public String getLatitude() {
-		return latitude;
-	}
-	public String getLongitude() {
-		return longitude;
-	}
-	public String getPopulation() {
-		return population;
-	}
-	public String getBird() {
-		return bird;
-	}
 
-	public void setAbbreviation(String abbreviation) {
-		this.abbrev = abbreviation;
-	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setCapital(String capital) {
-		this.capital = capital;
+
+	public int getPage() {
+		return page;
 	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+
+	public void setPage(int page) {
+		this.page = page;
 	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+
+	public String getQuote() {
+		return quote;
 	}
-	public void setPopulation(String population) {
-		this.population = population;
-	}
-	public void setBird(String bird) {
-		this.bird = bird;
+
+	public void setQuote(String quote) {
+		this.quote = quote;
 	}
 
 	@Override
 	public String toString() {
-		return "State [abbrev=" + abbrev + ", name=" + name + ", capital=" + capital + ", latitude=" + latitude
-				+ ", longitude=" + longitude + ", population=" + population + ", bird=" + bird + "]";
+		return "Bookmark [isbn=" + isbn + ", name=" + name + ", page=" + page + ", quote=" + quote + "]";
 	}
-
+	
 }

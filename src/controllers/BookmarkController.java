@@ -13,64 +13,64 @@ import data.Bookmark;
 import data.BookmarkDAO;
 
 @Controller
-@SessionAttributes("currentState")
+@SessionAttributes("currentBook")
 public class BookmarkController {
 	@Autowired
-	private BookmarkDAO stateDao;
+	private BookmarkDAO bookmarkDao;
 
-	@ModelAttribute("currentState")
+	@ModelAttribute("currentBook")
 	public String initState() {
 		return "";
 	}
 	
-	@RequestMapping(path="GetStateData.do", 
-			params="name",
+	@RequestMapping(path="GetBookData.do", 
+			params="isbn",
 			method=RequestMethod.GET)
-	public ModelAndView getByName(@RequestParam("name") String n) {
+	public ModelAndView getByName(@RequestParam("isbn") String n) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result2.jsp");
-		mv.addObject("state", stateDao.getStateByName(n));
-		mv.addObject("currentState", stateDao.getStateByName(n).getName());
+		mv.setViewName("result.jsp");
+		mv.addObject("book", bookmarkDao.getBookByIsbn(n));
+		mv.addObject("currentBook", bookmarkDao.getBookByIsbn(n).getName());
 		return mv;
 	}
-	@RequestMapping(path="GetStateData.do", 
-			params="next",
-			method=RequestMethod.GET)
-	public ModelAndView getNextByState(@ModelAttribute("currentState") String state) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result2.jsp");
-		mv.addObject("state", stateDao.getNextState(state));
-		mv.addObject("currentState", stateDao.getNextState(state).getName());
-		return mv;
-	}
-	@RequestMapping(path="GetStateData.do", 
-			params="back",
-			method=RequestMethod.GET)
-	public ModelAndView getBackByState(@ModelAttribute("currentState") String state) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result2.jsp");
-		mv.addObject("state", stateDao.getBackState(state));
-		mv.addObject("currentState", stateDao.getBackState(state).getName());
-		return mv;
-	}
-	
-	@RequestMapping(path="GetStateData.do", 
-			params="abbr",
-			method=RequestMethod.GET)
-	public ModelAndView getByAbbrev(@RequestParam("abbr") String a) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result2.jsp");
-		mv.addObject("state", stateDao.getStateByAbbreviation(a));
-		mv.addObject("currentState", stateDao.getStateByAbbreviation(a).getName());
-		return mv;
-	}
-
-	@RequestMapping(path="NewState.do",
-			method=RequestMethod.POST)
-	public ModelAndView newState(Bookmark state) {
-		stateDao.addState(state);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result2.jsp");
-		return mv;
-	}
+//	@RequestMapping(path="GetBookData.do", 
+//			params="next",
+//			method=RequestMethod.GET)
+//	public ModelAndView getNextByState(@ModelAttribute("currentState") String state) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("result.jsp");
+//		mv.addObject("state", stateDao.getNextState(state));
+//		mv.addObject("currentState", stateDao.getNextState(state).getName());
+//		return mv;
+//	}
+//	@RequestMapping(path="GetBookData.do", 
+//			params="back",
+//			method=RequestMethod.GET)
+//	public ModelAndView getBackByState(@ModelAttribute("currentState") String state) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("result.jsp");
+//		mv.addObject("state", stateDao.getBackState(state));
+//		mv.addObject("currentState", stateDao.getBackState(state).getName());
+//		return mv;
+//	}
+//	
+//	@RequestMapping(path="GetBookData.do", 
+//			params="abbr",
+//			method=RequestMethod.GET)
+//	public ModelAndView getByAbbrev(@RequestParam("abbr") String a) {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("result.jsp");
+//		mv.addObject("state", stateDao.getStateByAbbreviation(a));
+//		mv.addObject("currentState", stateDao.getStateByAbbreviation(a).getName());
+//		return mv;
+//	}
+//
+//	@RequestMapping(path="NewBookmark.do",
+//			method=RequestMethod.POST)
+//	public ModelAndView newState(Bookmark state) {
+//		stateDao.addState(state);
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("result.jsp");
+//		return mv;
+//	}
 }

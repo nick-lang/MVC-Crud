@@ -3,8 +3,8 @@ package data;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.WebApplicationContext;
 
 public class BookmarkFileDAO implements BookmarkDAO {
-	private static final String FILE_NAME="/WEB-INF/states.csv";
-	private List<Bookmark> states = new ArrayList<>();
+	private static final String FILE_NAME="/WEB-INF/bookmarks.csv";
+	private Map<String, Bookmark> bookmarks = new HashMap<>();
 	/*
 	 * Use Autowired to have Spring inject an instance
 	 * of a WebApplicationContext into this object after
@@ -39,14 +39,11 @@ public class BookmarkFileDAO implements BookmarkDAO {
 			String line = buf.readLine();
 			while ((line = buf.readLine()) != null) {
 				String[] tokens = line.split(",");
-				String abbrev = tokens[1];
-				String name = tokens[2];
-				String capital = tokens[3];
-				String latitude = tokens[4];
-				String longitude = tokens[5];
-				String population = tokens[6];
-				String bird = tokens[7];
-				states.add(new Bookmark(abbrev, name, capital, latitude, longitude, population, bird));
+				String isbn = tokens[0];
+				String name = tokens[1];
+				int page = Integer.parseInt(tokens[2]);
+				String quote = tokens[3];
+				bookmarks.put(isbn, new Bookmark(isbn, name, page, quote));
 			}
 		} catch (Exception e) {
 			System.err.println(e);
@@ -54,66 +51,27 @@ public class BookmarkFileDAO implements BookmarkDAO {
 	}
 
 	@Override
-	public Bookmark getStateByName(String name) {
-		Bookmark s = null;
-		for (Bookmark state : states) {
-			if (state.getName().equalsIgnoreCase(name)) {
-				s = state;
-				break;
-			}
-		}
-		return s;
+	public Bookmark getBookByIsbn(String isbn) {
+		return bookmarks.get(isbn);
 	}
+	
 	@Override
-	public Bookmark getNextState(String name) {
-		Bookmark s = null;
-		boolean isNext = false;
-		if (name.equalsIgnoreCase("Wyoming")){
-			return getStateByName("Alabama");
-		}
-		for (Bookmark state : states) {
-			if (isNext == true){
-				s = state;
-				break;
-			}
-			if (state.getName().equalsIgnoreCase(name)) {
-				isNext = true;
-			}
-		}
-		return s;
+	public void addBook(Bookmark bookmark) {
+		// TODO Auto-generated method stub
+		
 	}
+
 	@Override
-	public Bookmark getBackState(String name) {
-		Bookmark s = null;
-		boolean isBack = false;
-		if (name.equalsIgnoreCase("Alabama")){
-			return getStateByName("Wyoming");
-		}
-		for (Bookmark state : states) {
-			if (state.getName().equalsIgnoreCase(name)) {
-				isBack = true;
-			}
-			if (isBack == true){
-				break;
-			}
-			s = state;
-		}
-		return s;
+	public Bookmark getNextBook(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 	@Override
-	public Bookmark getStateByAbbreviation(String abbrev) {
-		Bookmark s = null;
-		for (Bookmark state : states) {
-			if (state.getAbbreviation().equalsIgnoreCase(abbrev)) {
-				s = state;
-				break;
-			}
-		}
-		return s;
+	public Bookmark getBackBook(String name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	@Override
-	public void addState(Bookmark state) {
-		states.add(state);
-	}
+
 }
 
