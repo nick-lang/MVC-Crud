@@ -59,18 +59,18 @@ public class BookFileDAO implements BookDAO {
 	public void addBook(String isbn, String title, String author) {
 		Book bk = new Book(isbn, title, author);
 		books.put(bk.getIsbn(), bk);
-		System.out.println(bk);
 	}
 	
 	@Override
-	public void editBook(Book bk) {
-		// TODO Auto-generated method stub
+	public void editBook(String isbn, String title, String author) {
+		getBookByIsbn(isbn).setTitle(title);
+		getBookByIsbn(isbn).setAuthor(author);
 		
 	}
 	
 	@Override
-	public void removeBook(Book bk) {
-		// TODO Auto-generated method stub
+	public void removeBook(String isbn) {
+		books.remove(isbn);
 		
 	}
 

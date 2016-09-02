@@ -12,14 +12,18 @@
 		<img src="${book.coverImage}" title="${book.title}"/><br/>
 		Title: ${book.title}<br/>
 		Author: ${book.author}<br/>
-		Delete Book
+		<form action="DeleteBookData.do" method="POST">
+			<input type="hidden" value="${book.isbn}" name="isbn"/> 
+			<input type="submit" value="Delete Book" />
+		</form>
 	</div>
 	<div>
-	<form action="AddBookData.do" method="POST">
+	<form action="EditBookData.do" method="POST">
 		Title:
 		<input type="text" name="title"/><br/>
 		Author: 
 		<input type="text" name="author"/><br/>
+		<input type="hidden" value="${book.isbn}" name="isbn"/> 
 		<input type="submit" value="Edit Book" />
 	</form>
 	</div>
