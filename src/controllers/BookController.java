@@ -23,16 +23,6 @@ public class BookController {
 	}
 	
 	@RequestMapping(path="GetBookData.do", 
-			params="isbn",
-			method=RequestMethod.GET)
-	public ModelAndView getByName(@RequestParam("isbn") String n) {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("result.jsp");
-		mv.addObject("book", bookDao.getBookByIsbn(n));
-		mv.addObject("currentBook", bookDao.getBookByIsbn(n).getTitle());
-		return mv;
-	}
-	@RequestMapping(path="GetBookData.do", 
 			method=RequestMethod.GET)
 	public ModelAndView getAllBooks() {
 		ModelAndView mv = new ModelAndView();
@@ -40,17 +30,28 @@ public class BookController {
 		mv.addObject("books", bookDao.getBooks());
 		return mv;
 	}
-//	@RequestMapping(path="GetBookData.do", 
-//			params="back",
-//			method=RequestMethod.GET)
-//	public ModelAndView getBackByState(@ModelAttribute("currentState") String state) {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("result.jsp");
-//		mv.addObject("state", stateDao.getBackState(state));
-//		mv.addObject("currentState", stateDao.getBackState(state).getName());
-//		return mv;
-//	}
-//	
+	@RequestMapping(path="AddBookData.do", 
+			method=RequestMethod.POST)
+	public ModelAndView addBookInfo(@RequestParam("isbn") String isbn,@RequestParam("title") String title, @RequestParam("author") String author) {
+		//Add book
+		bookDao.addBook(isbn, title, author);
+		
+		//Send new book to display all page
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("allBooks.jsp");
+		mv.addObject("books", bookDao.getBooks());
+		return mv;
+	}
+	@RequestMapping(path="EditBookData.do", 
+			method=RequestMethod.GET)
+	public ModelAndView editBookInfo(@RequestParam("isbn") String isbn) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("editBook.jsp");
+		System.out.println("in editBookInfo");
+		mv.addObject("book", bookDao.getBookByIsbn(isbn));
+		return mv;
+	}
+	
 //	@RequestMapping(path="GetBookData.do", 
 //			params="abbr",
 //			method=RequestMethod.GET)

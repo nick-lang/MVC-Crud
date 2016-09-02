@@ -10,7 +10,9 @@
 <body>
 <c:forEach items="${books}" var="book">
     <div>
-    <img src="${book.coverImage}" alt="${book.title}"/>
+    <a href="EditBookData.do?isbn=${book.isbn}">
+    		<img src="${book.coverImage}" title="${book.title}"/>
+    </a>
 	</div>
 </c:forEach>
 </body>

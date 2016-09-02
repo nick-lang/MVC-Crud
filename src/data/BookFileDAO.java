@@ -56,7 +56,20 @@ public class BookFileDAO implements BookDAO {
 	}
 	
 	@Override
-	public void addBook(Book bookmark) {
+	public void addBook(String isbn, String title, String author) {
+		Book bk = new Book(isbn, title, author);
+		books.put(bk.getIsbn(), bk);
+		System.out.println(bk);
+	}
+	
+	@Override
+	public void editBook(Book bk) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void removeBook(Book bk) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -66,6 +79,7 @@ public class BookFileDAO implements BookDAO {
 		return books.values();
 		
 	}
+
 
 
 }
