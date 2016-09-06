@@ -1,7 +1,7 @@
 #Library
 This project was created by Nick Lang.
 
-Library is a basic Spring-MVC Crud app that uses html and css for presentation.
+Library is a basic Spring-MVC Crud app that stores book objects. Library uses HTML and CSS for presentation. A JSON is parsed to dynamically fetch cover images.
 
 This project can be found functioning at http://www.nicklang.io:8080/Bookmark/
 
@@ -10,12 +10,12 @@ This project can be found functioning at http://www.nicklang.io:8080/Bookmark/
 
 -Ability to list references that a book makes to other books and authors.
 
--Essentially, I would like to turn Library into a funtional idea index. If I had an idea index before this, I would know where I got this idea.
+-Essentially, I would like to turn Library into a functional idea index. If I had an idea index before this, I would know where I got this idea.
 
 ##Stumbling Points
 -CSS
 
--CoverImage.java takes an ISBN and pulls a cover image associated with that ISBN from the web. It does this by parsing a Google Books JSON and finding a url that links to the cover image. The trickiest part of this was that initially I was unable to read the entire JSON. This was solved by reading in the JSON as a buffered byte array.
+-CoverImage.java takes an ISBN and pulls a cover image associated with that ISBN from the web. It does this by parsing a Google Books JSON and finding a URL that links to the cover image. The trickiest part of this was that initially I was unable to read the entire JSON. This was solved by reading in the JSON as a buffered byte array.
 
 ##Special Thanks:
 Rod Hammond: Outlining the functionality of a program that reads and parses a JSON.
