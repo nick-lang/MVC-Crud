@@ -1,6 +1,8 @@
 #Library
 This project was created by Nick Lang.
+
 Library is a basic Spring-MVC Crud app that uses html and css for presentation.
+
 This project can be found at functioning at http://www.nicklang.io:8080/Bookmark/
 
 ##Future Features
