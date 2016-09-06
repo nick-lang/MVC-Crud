@@ -8,14 +8,23 @@
 <title>Add a Book</title>
 </head>
 <body>
+<div id="container">
+    <div id="header">
+    		<div id="title">Library</div>
+    		<div id="navbar"><a href="www.nicklang.io:8080/Bookmark">home</a></div>
+    </div>
+    <div class="clearheader"></div>
+    <div class="edit-add">
 	<form action="AddBookData.do" method="POST">
-		ISBN:
+		ISBN:<br/>
 		<input type="text" name="isbn"/><br/>
-		Title:
+		Title:<br/>
 		<input type="text" name="title"/><br/>
-		Author: 
+		Author:<br/>
 		<input type="text" name="author"/><br/>
 		<input type="submit" value="Add Book" />
 	</form>
+	</div>
+</div>
 </body>
 </html>

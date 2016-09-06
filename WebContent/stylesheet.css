@@ -66,6 +66,13 @@ body {
 	float: left;
 }
 
+.edit-add {
+	text-align: center;
+	color: #ffffff;
+}
+.edit-add img {
+	padding-left: 0px;
+}
 
 #body p {
 	margin-left: 5px;
