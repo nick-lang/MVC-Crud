@@ -8,12 +8,22 @@
 <title>Books</title>
 </head>
 <body>
-<c:forEach items="${books}" var="book">
-    <div>
-    <a href="EditBookData.do?isbn=${book.isbn}">
-    		<img src="${book.coverImage}" title="${book.title}"/>
-    </a>
-	</div>
-</c:forEach>
+<div id="container">
+    <div id="header">
+    		<div id="title">Library</div>
+    		<div id="navbar"><a href="www.nicklang.io:8080/Bookmark">home</a></div>
+    </div>
+    <div class="clearheader"></div>
+	<div id="body">
+	<c:forEach items="${books}" var="book">
+    		<div>
+    		<a href="EditBookData.do?isbn=${book.isbn}">
+    			<img src="${book.coverImage}" title="${book.title}"/>
+    		</a>
+		</div>
+	</c:forEach>
+		<div id="clear-books"></div>
+	</div>            
+</div>
 </body>
 </html>
