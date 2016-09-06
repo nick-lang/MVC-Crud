@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
 <title>Books</title>
 </head>
 <body>
-<a href="GetBookData.do">View all or Edit</a><br/>
-<a href="addBook.jsp">Add</a><br/>
+<div id="container">
+	<div id="header">
+    		<div id="title">Library</div>
+    		<div id="navbar"><a href="www.nicklang.io:8080/Bookmark">home</a></div>
+    </div>
+    <div class="clearheader"></div>
+
+    		<div class="button"><div class="button-circle">
+    		<div id="align-vert">
+		<a href="GetBookData.do" class="button">
+			View all<br/>Edit<br/>Delete</a></div></div></div>
+		<div class="button"><div class="button-circle">
+		<a href="addBook.jsp" class="button">
+			Add</a></div></div><br/>
+
+</div>
 </body>
 </html>

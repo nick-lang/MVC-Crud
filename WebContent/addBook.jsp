@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
 <title>Add a Book</title>
 </head>
 <body>
