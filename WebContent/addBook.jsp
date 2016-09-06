@@ -11,7 +11,7 @@
 <div id="container">
     <div id="header">
     		<div id="title">Library</div>
-    		<div id="navbar"><a href="www.nicklang.io:8080/Bookmark">home</a></div>
+    		<div id="navbar"><a href="http://www.nicklang.io:8080/Bookmark/">home</a></div>
     </div>
     <div class="clearheader"></div>
     <div class="edit-add">
