@@ -22,7 +22,6 @@
     		</a>
 		</div>
 	</c:forEach>
-		<div id="clear-books"></div>
 	</div>            
 </div>
 </body>
