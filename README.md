@@ -3,6 +3,8 @@ This project was created by Nick Lang.
 
 Library is a basic Spring-MVC Crud app that stores book objects. Library uses HTML and CSS for presentation. A JSON is parsed to dynamically fetch cover images.
 
+This project was updated to persist data using mysql.
+
 This project can be found functioning at http://www.nicklang.io:8080/Bookmark/
 
 ##Future Features
@@ -11,6 +13,9 @@ This project can be found functioning at http://www.nicklang.io:8080/Bookmark/
 -Ability to list references that a book makes to other books and authors.
 
 -Essentially, I would like to turn Library into a functional idea index. If I had an idea index before this, I would know where I got this idea.
+
+###Bug Fixes
+-Authors are never deleted when deleting a book. Although they could be deleted, the plan is to make it so that existing authors can be referenced when adding a new book.
 
 ##Stumbling Points
 -CSS
