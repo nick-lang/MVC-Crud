@@ -54,8 +54,7 @@ public class BookDbDAO implements BookDAO {
 			} catch (IOException e) {
 				System.out.println("IO exception while fetching image url.");
 			}
-			
-			
+
 			rs.close();
 			stmt.close();
 			conn.close();
@@ -147,24 +146,45 @@ public class BookDbDAO implements BookDAO {
 
 			if (uc == 1) {
 				System.out.println("Edited book: " + isbn);
+			} else {
+				System.out.println(isbn + ": not edited");
 			}
-			else {
-				System.out.println(isbn + ": not edited" );
-			}
-			
+
 			stmt.close();
 			conn.close();
 
 		} catch (SQLException sqle) {
 			sqle.printStackTrace(System.err);
 		}
-		
 
 	}
 
 	@Override
 	public void removeBook(String isbn) {
-		// books.remove(isbn);
+		try {
+			Connection conn = DriverManager.getConnection(url, user, pword);
+			String sqltxt = "DELETE FROM book_author WHERE isbn = ?";
+			PreparedStatement stmt = conn.prepareStatement(sqltxt);
+			stmt.setString(1, isbn);
+			int uc = stmt.executeUpdate();
+			if (uc > 0) {
+				System.out.println(isbn + ": deleted from book_author");
+			}
+			sqltxt = "DELETE FROM books WHERE isbn = ?";
+			stmt = conn.prepareStatement(sqltxt);
+			stmt.setString(1, isbn);
+			uc = stmt.executeUpdate();
+			if (uc > 0) {
+				System.out.println(isbn + ": deleted from book");
+			}
+
+			stmt.close();
+			conn.close();
+
+		} catch (SQLException sqle) {
+			System.err.println(sqle);
+			sqle.printStackTrace(System.err);
+		}
 
 	}
 
@@ -176,8 +196,6 @@ public class BookDbDAO implements BookDAO {
 			String sql = "SELECT * from books";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
-//			ResultSetMetaData rsmd = rs.getMetaData();
-//			int cols = rsmd.getColumnCount();
 
 			while (rs.next()) {
 				Book book = new Book();
@@ -185,7 +203,7 @@ public class BookDbDAO implements BookDAO {
 				book.setIsbn(rs.getString(1));
 				book.setTitle(rs.getString(2));
 				book.setCoverImage(rs.getString(3));
-				
+
 				books.add(book);
 			}
 			System.out.println(books);
